@@ -6,7 +6,7 @@ import { TreeItem } from '@mui/x-tree-view/TreeItem';
 
 
 //move the s3 functions to FilesSerice.js
-
+ 
 export const Files = () => {
   const [objects, setObjects] = useState([]);
 
@@ -44,7 +44,7 @@ export const Files = () => {
     <div className="Files">
       <SimpleTreeView
         aria-label="file system navigator"
-        defaultExpanded={['0']}
+        defaultExpandedItems={['0']}
       >
         {renderTree(paths)}
       </SimpleTreeView>
