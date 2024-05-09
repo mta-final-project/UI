@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Header } from "./Components/Layout";
+import { Files } from "./Components/Files";
 
 const App = () => (
   <BrowserRouter>
@@ -7,7 +8,7 @@ const App = () => (
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         {/* <Route path="courses" element={<Courses />} /> */}
-        {/* <Route path="files" element={<Files />} /> */}
+        <Route path="files" element={<Files />} /> 
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
