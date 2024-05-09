@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Header } from "./Components/Layout";
+import { Files } from "./Components/Files";
 
 const App = () => (
   <BrowserRouter>
