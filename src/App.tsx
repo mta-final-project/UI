@@ -1,14 +1,17 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Header } from "./Components/Layout";
 import { Files } from "./Components/Files";
+import LoginForm from "./Components/Auth/LoginForm";
+import RegisterForm from "./Components/Auth/RegisterForm";
 
 const App = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        {/* <Route path="courses" element={<Courses />} /> */}
         <Route path="files" element={<Files />} /> 
+        <Route path="login" element={<LoginForm />} /> 
+        <Route path="registration" element={<RegisterForm />} /> 
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
