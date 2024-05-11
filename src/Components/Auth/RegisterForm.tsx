@@ -1,6 +1,4 @@
-import * as React from 'react';
 import Sheet from "@mui/joy/Sheet";
-import CssBaseline from '@mui/joy/CssBaseline';
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -9,10 +7,9 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 
 
-export default function RegisterForm() {
+const RegisterForm = () => {
  return (
    <main>
-     <CssBaseline />
      <Sheet
        sx={{
          width: 300,
@@ -69,3 +66,5 @@ export default function RegisterForm() {
    </main>
  );
 }
+
+export default RegisterForm;

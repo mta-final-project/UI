@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Header } from "./Components/Layout";
-import { Files } from "./Components/Files";
+import Files from "./Components/Files";
 import LoginForm from "./Components/Auth/LoginForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
+import CssBaseline from '@mui/joy/CssBaseline';
 
 const App = () => (
+  <>
+  <CssBaseline/>
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -16,6 +19,7 @@ const App = () => (
       </Route>
     </Routes>
   </BrowserRouter>
+  </> 
 )
 
 const Layout = () => (

@@ -7,7 +7,7 @@ import { TreeItem } from '@mui/x-tree-view/TreeItem';
 
 //move the s3 functions to FilesSerice.js
  
-export const Files = () => {
+const Files = () => {
   const [objects, setObjects] = useState([]);
 
   useEffect(() => {
@@ -51,3 +51,5 @@ export const Files = () => {
     </div>
   );
 };
+
+export default Files;
