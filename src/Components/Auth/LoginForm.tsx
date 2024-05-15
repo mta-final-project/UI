@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Sheet from "@mui/joy/Sheet";
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
@@ -16,7 +16,7 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
 
-const handleSubmit = (event) => {
+const handleSubmit =  (event) => {
     event.preventDefault()
 
     setEmailError(false)
@@ -31,8 +31,7 @@ const handleSubmit = (event) => {
 
     if (email && password) {
         console.log(email, password)
-        const response = login(email, password);
-        console.log(import.meta.env.USERS_API_VITE);
+        const response =  login(email, password);
         console.log("Login successful:", response);
     }
 }
