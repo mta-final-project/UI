@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Sheet from "@mui/joy/Sheet";
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
@@ -5,9 +6,37 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
+import {login} from '../../Services/UsersService'
 
 
 const LoginForm = () => {
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [emailError, setEmailError] = useState(false)
+  const [passwordError, setPasswordError] = useState(false)
+
+const handleSubmit = (event) => {
+    event.preventDefault()
+
+    setEmailError(false)
+    setPasswordError(false)
+
+    if (email == '') {
+        setEmailError(true)
+    }
+    if (password == '') {
+        setPasswordError(true)
+    }
+
+    if (email && password) {
+        console.log(email, password)
+        const response = login(email, password);
+        console.log(import.meta.env.USERS_API_VITE);
+        console.log("Login successful:", response);
+    }
+}
+
  return (
    <main>
      <Sheet
@@ -31,23 +60,33 @@ const LoginForm = () => {
          </Typography>
          <Typography level="body-sm" sx={{ textAlign: 'center' }}>נא הקלידו את הפרטים המבוקשים מטה</Typography>
        </div>
-       <FormControl>
+       <form autoComplete="off" onSubmit={handleSubmit} >
+        <FormControl>
          <FormLabel sx={{ textAlign: 'right' }}>אימייל</FormLabel>
-         <Input
+         <Input 
+           required
            name="email"
            type="email"
            placeholder="me@mycollage.ac.il"
+           value={email}
+           error={emailError}
+           onChange={e => setEmail(e.target.value)}
          />
        </FormControl>
        <FormControl>
          <FormLabel sx={{ textAlign: 'right' }}>סיסמא</FormLabel>
          <Input
+           required
            name="password"
            type="password"
            placeholder="סיסמא"
+           onChange={e => setPassword(e.target.value)}
+           value={password}
+           error={passwordError}
          />
        </FormControl>
-       <Button sx={{ mt: 1 }}>התחברות</Button>
+       <Button type="submit" sx={{ mt: 1, marginX: 'auto', display: 'block', width: '100%', marginTop: '15px' }}>התחברות</Button>
+       </form>
        <Typography
          fontSize="sm"
          sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative'}}
