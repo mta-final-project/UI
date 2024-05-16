@@ -9,16 +9,32 @@ import Link from '@mui/joy/Link';
 import { register } from '../../Services/UsersService';
 
 const RegisterForm = () => {
-  const [message, setMessage] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [retypePassword, setRetypePassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     console.log(email, password);
-    const response = register(email, password);
-    console.log("Login successful:", response);
-    setMessage('ההרשמה בוצעה בהצלחה'); // Set the message to be displayed after submission
+
+    if (password !== retypePassword) {
+      setError('הסיסמאות אינן תואמות');
+      return;
+    }
+
+    setError('');
+    setMessage('');
+    register(email, password)
+      .then(response => {
+        console.log("Register response:", response);
+        setMessage('ההרשמה בוצעה בהצלחה');
+      })
+      .catch(error => {
+        console.error("Registration error:", error);
+        setError('הרשמה נכשלה, נא לנסות שוב');
+      });
   };
 
   return (
@@ -46,7 +62,7 @@ const RegisterForm = () => {
           </Typography>
           <Typography level="body-sm" sx={{ textAlign: 'center' }}>נא הקלידו את הפרטים המבוקשים מטה</Typography>
         </div>
-        <FormControl>
+        <FormControl sx={{ direction: 'rtl' }}>
           <FormLabel sx={{ textAlign: 'right' }}>אימייל</FormLabel>
           <Input
             name="email"
@@ -55,9 +71,10 @@ const RegisterForm = () => {
             required
             onChange={e => setEmail(e.target.value)}
             value={email}
+            sx={{ textAlign: 'left', direction: 'ltr' }}
           />
         </FormControl>
-        <FormControl>
+        <FormControl sx={{ direction: 'rtl' }}>
           <FormLabel sx={{ textAlign: 'right' }}>סיסמא</FormLabel>
           <Input
             name="password"
@@ -65,8 +82,8 @@ const RegisterForm = () => {
             placeholder="סיסמא"
             required
             value={password}
-            //error={passwordError}
             onChange={e => setPassword(e.target.value)}
+            sx={{ textAlign: 'right' }}
           />
           <FormLabel sx={{ textAlign: 'right' }}>סיסמא חוזרת</FormLabel>
           <Input
@@ -74,8 +91,9 @@ const RegisterForm = () => {
             type="password"
             placeholder="סיסמא חוזרת"
             required
-            //value={repassword}
-            //error={repasswordError}
+            value={retypePassword}
+            onChange={e => setRetypePassword(e.target.value)}
+            sx={{ textAlign: 'right' }}
           />
         </FormControl>
         <Button type="submit" sx={{ mt: 1 }}>הרשמה</Button>
@@ -85,6 +103,14 @@ const RegisterForm = () => {
             sx={{ mt: 2, textAlign: 'center', color: 'success.dark' }}
           >
             {message}
+          </Typography>
+        )}
+        {error && (
+          <Typography
+            role="alert"
+            sx={{ mt: 2, textAlign: 'center', color: 'error.dark' }}
+          >
+            {error}
           </Typography>
         )}
         <Typography

@@ -2,8 +2,7 @@ import axios from "axios";
 import qs from "qs";
 
 const api = axios.create({
-  //baseURL: import.meta.env.USERS_API_URL,
-  baseURL: 'http://localhost:8000',
+  baseURL: 'http://ec2-34-228-10-239.compute-1.amazonaws.com:8000/'
 })
 
 export const register = async (email: string, password: string) => {
