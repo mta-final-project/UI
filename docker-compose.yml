@@ -5,6 +5,6 @@ services:
     container_name: ui
     restart: unless-stopped
     ports:
-      - '8002:8002'
+      - '80:80'
     env_file:
       - .env

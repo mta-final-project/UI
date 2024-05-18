@@ -5,17 +5,8 @@ env:
   TAG: latest
 
 tasks:
-  install:
-    desc: Install dependencies
-    sources:
-      - package.json
-    cmds:
-      - npm install
-    internal: True
-
   build:
     desc: Build docker image
-    deps: ["package.json"]
     cmds:
       - docker build --tag $IMAGE_NAME:$TAG .
 
