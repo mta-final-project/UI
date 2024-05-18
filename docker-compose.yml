@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  app:
+    image: ac-ui:latest
+    container_name: ui
+    restart: unless-stopped
+    ports:
+      - '80:80'
+    env_file:
+      - .env
