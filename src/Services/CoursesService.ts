@@ -1,8 +1,9 @@
 import axios from "axios";
+import { COURSES_API_URL } from "../environments";
 
 
 const api = axios.create({
-  baseURL: import.meta.env.COURSES_API_URL,
+  baseURL: COURSES_API_URL,
 })
 
 export async function getCourses() {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getS3Objects } from "../Services/FilesService";
+import { getS3Objects } from "../services/FilesService";
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 
