@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Files from "./Components/Files";
-import LoginForm from "./Components/Auth/LoginForm";
-import RegisterForm from "./Components/Auth/RegisterForm";
+import Files from "./components/Files";
+import LoginForm from "./components/auth/LoginForm";
+import RegisterForm from "./components/auth/RegisterForm";
 import CssBaseline from '@mui/joy/CssBaseline';
-import { AuthProvider } from "./Hooks/context/AuthContext";
-import Header from "./Components/Navbar";
+import { AuthProvider } from "./hooks/context/AuthContext";
+import Header from "./components/navbar";
 
 const App = () => (
   <>

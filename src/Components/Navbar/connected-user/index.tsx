@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../Hooks/context/AuthContext";
+import { useAuth } from "../../../hooks/context/AuthContext";
 import { FC } from "react";
 
 const ConnectedUser: FC = () => {
@@ -10,16 +10,16 @@ const ConnectedUser: FC = () => {
     return (
         <Box>
             { !user && <>
-                <Button onClick={() => navigate('/login')}>
+                <Button sx={{color:'white'}} onClick={() => navigate('/login')}>
                     LOGIN
                 </Button>
             </> }
             { user &&
-                <Box sx={{ display: 'flex', gap: 1 }}>
+                <Box sx={{ display: 'flex', gap: 1 ,color:'white'}}>
                     <Typography>
                         Hey {user.Name}!
                     </Typography>
-                    <Button sx={{ backgroundColor: 'red' }} onClick={() => setUser(null)}>Logout</Button>
+                    <Button sx={{ backgroundColor: '#0A6BCB', color:'white' }} onClick={() => setUser(null)}>Logout</Button>
     </Box> }
         </Box>
     )

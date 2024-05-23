@@ -5,9 +5,11 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-
+import { useAuth } from "../../hooks/context/AuthContext";
 
 const LoginForm = () => {
+  const { setUser } = useAuth();
+
  return (
    <main>
      <Sheet
@@ -47,7 +49,7 @@ const LoginForm = () => {
            placeholder="סיסמא"
          />
        </FormControl>
-       <Button sx={{ mt: 1 }}>התחברות</Button>
+       <Button onClick={() => setUser({ Name: 'Keren'})} sx={{ mt: 1 }}>התחברות</Button>
        <Typography
          fontSize="sm"
          sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative'}}
