@@ -1,24 +1,27 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Header } from "./Components/Layout";
 import Files from "./Components/Files";
 import LoginForm from "./Components/Auth/LoginForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import CssBaseline from '@mui/joy/CssBaseline';
+import { AuthProvider } from "./Hooks/context/AuthContext";
+import Header from "./Components/Navbar";
 
 const App = () => (
   <>
   <CssBaseline/>
+  <AuthProvider>
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="files" element={<Files />} /> 
-        <Route path="login" element={<LoginForm />} /> 
-        <Route path="registration" element={<RegisterForm />} /> 
+        <Route path="/files" element={<Files />} /> 
+        <Route path="/login" element={<LoginForm />} /> 
+        <Route path="/registration" element={<RegisterForm />} /> 
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
   </BrowserRouter>
+  </AuthProvider>
   </> 
 )
 
