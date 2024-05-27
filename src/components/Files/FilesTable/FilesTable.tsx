@@ -17,9 +17,7 @@ interface Props {
     files: IFile[];
 }
 
-const FilesTable: FC = (props: Props) => {
-    const { files } = props;
-
+const FilesTable: FC<Props> = ({ files }) => {
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

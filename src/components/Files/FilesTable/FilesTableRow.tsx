@@ -4,15 +4,11 @@ import TableRow from "@mui/material/TableRow";
 import { IFile } from "./FilesTable.tsx";
 import { buildDateString } from "../../../utils/dates.ts";
 
-interface IProps {
+interface Props {
     file: IFile;
 }
 
-const FilesTableRow: FC = (props: IProps) => {
-    const { file } = props;
-
-    console.log(file.uploadedAt)
-
+const FilesTableRow: FC<Props> = ({ file }) => {
     return (
         <TableRow
             key={file.name}
