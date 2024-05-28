@@ -1,7 +1,7 @@
 import { FC } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { IFile } from "./FilesTable.tsx";
+import { IFile } from "../../../types/files.ts";
 import { buildDateString } from "../../../utils/dates.ts";
 
 interface Props {
