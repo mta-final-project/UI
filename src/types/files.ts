@@ -1,8 +1,8 @@
 export interface IFile {
+    key: string;
     name: string;
-    uploadedAt: Date;
+    last_modified: string;
     size: number;
-    contentType: string;
 }
 
 // export interface IDriveCourse {
