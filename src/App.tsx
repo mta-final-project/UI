@@ -3,8 +3,8 @@ import Files from "./components/Files";
 import LoginForm from "./components/auth/LoginForm";
 import RegisterForm from "./components/auth/RegisterForm";
 import CssBaseline from '@mui/joy/CssBaseline';
-import { AuthProvider } from "./Hooks/context/AuthContext";
-import Header from "./components/Navbar";
+import { AuthProvider } from "./hooks/context/AuthContext";
+import Header from "./components/navbar";
 
 const App = () => (
   <>
