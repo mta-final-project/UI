@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hooks/context/AuthContext";
+import { useAuth } from "../../../Hooks/context/AuthContext";
 import { FC } from "react";
 
 const ConnectedUser: FC = () => {

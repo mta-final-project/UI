@@ -2,10 +2,6 @@ import { useEffect, useState } from "react";
 import { getS3Objects } from "../services/FilesService";
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
-
-
-
-//move the s3 functions to FilesSerice.js
  
 const Files = () => {
   const [objects, setObjects] = useState([]);

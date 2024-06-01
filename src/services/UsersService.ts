@@ -13,12 +13,12 @@ export const register = async (email: string, password: string, first_name:strin
     return response.data;
 }
 
-export const login = async (username: string, password: string) => {
-  const loginDetails = { username, password}; 
+export const login = async (email: string, password: string) => {
+  const loginDetails = { email, password }; 
   const response = await api.post("/login", loginDetails, { 
     headers: {
-      "Accept":"application/json",
-      "Content-Type":"application/json"
+      "Accept": "application/json",
+      "Content-Type": "application/json"
     }
   });
   return response.data;
