@@ -1,5 +1,5 @@
 import axios from "axios";
-import { COURSES_API_URL } from "../environments";
+import { COURSES_API_URL } from "../Environments";
 
 
 const api = axios.create({
