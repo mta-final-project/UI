@@ -5,7 +5,4 @@ export interface IFile {
     size: number;
 }
 
-// export interface IDriveCourse {
-//     name: string;
-// }
 export type IDriveCourse = string;

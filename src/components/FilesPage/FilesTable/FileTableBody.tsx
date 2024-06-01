@@ -9,8 +9,6 @@ const FilesTableBody: FC = () => {
     const selectedCourse = useSelectedCourse();
     const { data: files } = useSelectedCourseFiles(selectedCourse);
 
-    console.log("files!:", files)
-
     if (!files)
         return <></>;
 

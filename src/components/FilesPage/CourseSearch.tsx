@@ -12,7 +12,6 @@ const CourseSearch: FC = () => {
     const handleCourseChange = (_event: SyntheticEvent, newValue: IDriveCourse | null) => {
         setSelectedCourse(newValue);
     }
-    console.log("courses!:", courses)
 
     return (
         <Autocomplete options={courses}

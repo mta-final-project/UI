@@ -2,6 +2,7 @@ import { FC } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { IFile } from "../../../types/files.ts";
+import DownloadButton from "./DownloadButton";
 
 interface Props {
     file: IFile;
@@ -17,7 +18,7 @@ const FilesTableRow: FC<Props> = ({ file }) => {
             <TableCell>{file.size}</TableCell>
             <TableCell>{file.last_modified}</TableCell>
             <TableCell component="th" scope="row">
-                {file.name}
+                {file.name} <DownloadButton fileName={file.key} />
             </TableCell>
         </TableRow>
     )
