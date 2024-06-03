@@ -1,27 +1,32 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Files from "./components/Files";
+import { QueryClient, QueryClientProvider } from "react-query";
+import CssBaseline from '@mui/joy/CssBaseline';
+import FilesPage from "./components/FilesPage";
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
-import CssBaseline from '@mui/joy/CssBaseline';
-import { AuthProvider } from "./hooks/context/AuthContext";
+import { AuthProvider } from "./hooks/context/AuthContext.tsx";
 import Header from "./components/Navbar";
+
+const queryClient = new QueryClient();
 
 const App = () => (
   <>
   <CssBaseline/>
-  <AuthProvider>
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="/files" element={<Files />} /> 
-        <Route path="/login" element={<LoginForm />} /> 
-        <Route path="/registration" element={<RegisterForm />} /> 
-        <Route path="*" element={<NoMatch />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
-  </AuthProvider>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/files" element={<FilesPage />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/registration" element={<RegisterForm />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  </QueryClientProvider>
   </> 
 )
 

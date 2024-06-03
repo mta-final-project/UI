@@ -1,1 +1,0 @@
-export const COURSES_API_URL = import.meta.env.COURSES_API_URL
