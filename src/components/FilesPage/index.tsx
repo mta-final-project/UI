@@ -12,7 +12,6 @@ const Files: FC = () => {
             <SelectedCourseProvider>
                 <CourseSearch />
                 <FilesTable />
-                <></>
             </SelectedCourseProvider>
         </Box>
     )

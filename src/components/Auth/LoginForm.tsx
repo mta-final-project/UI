@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import { useAuth } from "../../hooks/context/AuthContext.tsx";
+import { useAuth } from "../../hooks/context/AuthContext";
 
 const LoginForm = () => {
   const { setUser } = useAuth();

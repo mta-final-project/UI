@@ -19,7 +19,7 @@ const CourseSearch: FC = () => {
                       onChange={handleCourseChange}
                       renderInput={(params) => (
                           <TextField {...params}
-                                     label="בחר קורס"
+                                     label="Choose Course"
                                      value="outlined"
                           />
                       )}

@@ -3,6 +3,7 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { IFile } from "../../../types/files.ts";
 import DownloadButton from "./DownloadButton";
+import { buildDateString } from "../../../utils/dates.ts";
 
 interface Props {
     file: IFile;
@@ -16,10 +17,9 @@ const FilesTableRow: FC<Props> = ({ file }) => {
         >
             <TableCell>{file.key}</TableCell>
             <TableCell>{file.size}</TableCell>
-            <TableCell>{file.last_modified}</TableCell>
-            <TableCell component="th" scope="row">
-                {file.name} <DownloadButton fileName={file.key} />
-            </TableCell>
+            <TableCell>{buildDateString(file.last_modified)}</TableCell>
+            <TableCell component="th" scope="row">{file.name} </TableCell>
+            <TableCell><DownloadButton fileName={file.key}  />  </TableCell>
         </TableRow>
     )
 }
