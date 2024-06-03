@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { IDriveCourse, IFile } from "../../types/files.ts";
-import { filesApi } from "../../api";
+import { filesApi } from "../../api/index.ts";
 
 export const useSelectedCourseFiles = (selectedCourse: IDriveCourse | null) => {
     const fetchCourseFiles = async (): Promise<IFile[]> => {

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { IDriveCourse } from "../../types/files.ts";
-import { filesApi } from "../../api";
+import { filesApi } from "../../api/index.ts";
 
 
 const useCourses = () => {
