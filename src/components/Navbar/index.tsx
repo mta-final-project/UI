@@ -1,8 +1,8 @@
 import { Box } from "@mui/material"
 import { FC } from "react";
-import AppLogo from "./app-logo";
-import AppLinks from "./app-links";
-import ConnectedUser from "./connected-user";
+import AppLogo from "./AppLogo";
+import AppLinks from "./AppLinks";
+import ConnectedUser from "./ConnectedUser";
 
 const Navbar: FC = () => {
     return (
