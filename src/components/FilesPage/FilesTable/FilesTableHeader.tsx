@@ -8,12 +8,11 @@ const FilesTableHeader: FC = () => {
     return (
         <TableHead>
             <TableRow>
-                <TableCell>File Type</TableCell>
+                <TableCell>Path</TableCell>
                 <TableCell>Size (MB)</TableCell>
                 <TableCell>Date</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell>Download</TableCell>
-
             </TableRow>
         </TableHead>
     )

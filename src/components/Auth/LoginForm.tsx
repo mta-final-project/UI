@@ -7,7 +7,7 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { useAuth } from "../../hooks/context/AuthContext";
-import { login } from "../../services/UsersService";
+import { login } from "../../Services/UsersService";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {

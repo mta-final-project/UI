@@ -9,7 +9,7 @@ interface Props {
 
 const DownloadButton: FC<Props> =  ({fileName}) => {
     return (
-        <Button href= {`${FILES_API_URL}/download?file_name=${(fileName)}`} variant="contained" color="primary">
+        <Button href= {`${FILES_API_URL}/download?file_name=${(fileName)}`} variant="text" color="primary">
         <DownloadIcon />
     </Button>
     );
