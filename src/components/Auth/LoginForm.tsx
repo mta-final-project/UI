@@ -8,6 +8,7 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { useAuth } from "../../hooks/context/AuthContext";
 import { login } from '../../services/UsersService';
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { setUser } = useAuth();
@@ -17,6 +18,7 @@ const LoginForm = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,8 +48,9 @@ const LoginForm = () => {
         const accessToken = response.access_token
         setUser({ Name: username, Token: accessToken });
         setSuccessMessage(`${username} ברוך הבא`);
-
-      } catch (error) {
+        navigate('/');
+      }
+       catch (error) {
         console.error("Login error:", error);
         setErrorMessage('שם משתמש או סיסמא שגויים');
       }
@@ -55,7 +58,6 @@ const LoginForm = () => {
   };
   
   return (
-    <main>
       <Sheet
         sx={{
           width: 300, 
@@ -130,7 +132,6 @@ const LoginForm = () => {
           <span dir='RTL'>אין לך משתמש? </span>
         </Typography>
       </Sheet>
-    </main>
   );
 }
 
