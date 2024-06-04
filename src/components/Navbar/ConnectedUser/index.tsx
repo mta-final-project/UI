@@ -17,7 +17,7 @@ const ConnectedUser: FC = () => {
             { user &&
                 <Box sx={{ display: 'flex', gap: 1 ,color:'white'}}>
                     <Typography>
-                        Hey {user.Name}!
+                        Welcome {user.Name}
                     </Typography>
                     <Button sx={{ backgroundColor: '#0A6BCB', color:'white' }} onClick={() => setUser(null)}>Logout</Button>
     </Box> }

@@ -4,7 +4,7 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import FilesPage from "./components/FilesPage";
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
-import { AuthProvider } from "./hooks/context/AuthContext.tsx";
+import { AuthProvider } from "./hooks/context/AuthContext";
 import Header from "./components/Navbar";
 
 const queryClient = new QueryClient();

@@ -11,6 +11,7 @@ interface IAuthContext {
 
 interface IUser {
     Name: string;
+    Token: string;
 }
 
 const AuthContext = React.createContext<IAuthContext>({ user: null, setUser: () => {} });
