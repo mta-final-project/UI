@@ -4,6 +4,7 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import FilesPage from "./components/FilesPage";
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
+import CoursesPage from "./components/CoursesPage";
 import { AuthProvider } from "./hooks/context/AuthContext";
 import Header from "./components/Navbar";
 
@@ -21,6 +22,7 @@ const App = () => (
             <Route path="/files" element={<FilesPage />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/registration" element={<RegisterForm />} />
+            <Route path="/courses" element={<CoursesPage/>} />
             <Route path="*" element={<NoMatch />} />
           </Route>
         </Routes>
