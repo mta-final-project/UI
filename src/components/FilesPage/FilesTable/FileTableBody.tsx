@@ -15,10 +15,9 @@ const FilesTableBody: FC = () => {
     return (
         <TableBody>
             {files.map((row) => (
-                <FilesTableRow key={row.name} file={row}/>
+                <FilesTableRow key={row.name} file={row} />
             ))}
         </TableBody>
     )
 }
-
-export default FilesTableBody;
+ export default FilesTableBody;
