@@ -41,7 +41,6 @@ const LoginForm = () => {
 
     if (email && password) {
       try {
-        const response = await login(email, password);
         console.log("Login response:", response);
         const username = email.split('@')[0];
         const accessToken = response.access_token
