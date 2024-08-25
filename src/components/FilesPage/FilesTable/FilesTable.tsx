@@ -1,87 +1,3 @@
-// import { FC, useState, SyntheticEvent } from "react";
-// import { Tabs, Tab, TableContainer, Paper, Table } from "@mui/material";
-// import FilesTableHeader from "./FilesTableHeader";
-// import FileTableBody from "./FileTableBody";
-// import useCourses from "../../../hooks/query/useCourses";
-// import useSelectedCourseFiles from "../../../hooks/query/useSelectedCourseData";
-// import { IDriveFolder, IFile } from "../../../types/files";
-
-
-
-
-// const FilesTable: FC = () => {
-//     return (
-//         <TableContainer component={Paper}>
-//             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-//                 <FilesTableHeader />
-//                 <FileTableBody />
-//             </Table>
-//         </TableContainer>
-//     )
-// }
-
-// export default FilesTable;
-
-
-// import { FC, useEffect, useState } from "react";
-// import { Tabs, Tab, TableContainer, Paper, Table } from "@mui/material";
-// import FilesTableHeader from "./FilesTableHeader";
-// import FileTableBody from "./FileTableBody";
-// import { useSelectedCourse } from "../../../hooks/context/SelectedCourse.tsx";
-// // import useSelectedCourseFiles from "../../../hooks/query/useSelectedCourseData.ts";
-// // import useSubFolders from "../../../hooks/query/useCourses.ts";
-// import { IDriveFolder } from "../../../types/files.ts";
-// import { filesApi } from "../../../api/index.ts";
-
-// const FilesTable: FC = () => {
-//     const [activeTab, setActiveTab] = useState(0);
-//     const selectedCourse = useSelectedCourse();
-//    // console.log("selectedCourse",selectedCourse);
-//     // const { data: files } = useSelectedCourseFiles(subfolders ? subfolders[activeTab] : null);
-
-//     const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
-//         setActiveTab(newValue);
-//     };
-//     const [subfolders, setSubFolder] = useState([]);
-
-   
-
-//     useEffect(() => {
-//         console.log("subfolders",selectedCourse,subfolders);
-//         filesApi.get("/list-folders"+"/"+selectedCourse)
-//             .then(response => {
-//                 const responseData = response.data as IDriveFolder[];
-//                 setSubFolder(responseData);
-//             }
-            
-
-//             )
-        
-//     }, [selectedCourse]);
-
-//     if (!subfolders) return <></>;
-
-//     return (
-//         <>
-//             <Tabs value={activeTab} onChange={handleTabChange}>
-//                 {subfolders.map((folder, index) => (
-//                     <Tab key={index} label={folder} />
-//                 ))}
-//             </Tabs>
-//             <TableContainer component={Paper}>
-//                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-//                     <FilesTableHeader />
-//                     <FileTableBody />
-//                 </Table>
-//             </TableContainer>
-//         </>
-//     );
-// };
-
-// export default FilesTable;
-
-
-
 import { FC, useEffect, useState } from "react";
 import { Tabs, Tab, TableContainer, Paper, Table } from "@mui/material";
 import FilesTableHeader from "./FilesTableHeader";
@@ -89,12 +5,15 @@ import FileTableBody from "./FileTableBody";
 import { useSelectedCourse } from "../../../hooks/context/SelectedCourse.tsx";
 import { IDriveFolder } from "../../../types/files.ts";
 import { filesApi } from "../../../api/index.ts";
+import { IFile } from "../../../types/files";
 
 const FilesTable: FC = () => {
     const selectedCourseFromContext = useSelectedCourse();
     const [selectedCourse, setSelectedCourse] = useState<string | null>(selectedCourseFromContext);
     const [activeTab, setActiveTab] = useState(0);
     const [subfolders, setSubFolder] = useState<IDriveFolder[]>([]);
+    const [files, setFiles] = useState<IFile[]>([]);
+
 
     const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
@@ -107,31 +26,40 @@ const FilesTable: FC = () => {
     }, [selectedCourseFromContext]);
 
     useEffect(() => {
-        if (selectedCourse) {
-            filesApi.get(`/list-folders/?path=${selectedCourse}`)
-                .then(response => {
-                    const responseData = response.data as IDriveFolder[];
-                    setSubFolder(responseData);
-                })
-                .catch(error => {
-                    console.error("Error fetching subfolders:", error);
-                });
-        }
+        // Fetch subfolders and files in parallel
+        Promise.all([
+            filesApi.get(`/list-folders/?path=${selectedCourse}`),
+            filesApi.get(`/list-objects`, { params: { path: selectedCourse } })
+        ])
+            .then(([foldersResponse, filesResponse]) => {
+                const foldersData = foldersResponse.data as IDriveFolder[];
+                const filesData = filesResponse.data as IFile[];
+
+                setSubFolder(foldersData);
+                setFiles(filesData);
+            })
+    
     }, [selectedCourse]);
-
+   
+    
     if (!subfolders.length) return <></>;
-
+    
+    const filterPath = `${subfolders[activeTab]}/`;
+    
+    
+    const filteredFiles = files.filter(file => file.key === filterPath + file.name);    
+    const tabLabels = subfolders.map(folder => folder.split('/').pop());
     return (
         <>
-            <Tabs value={activeTab} onChange={handleTabChange}>
-                {subfolders.map((folder, index) => (
+            <Tabs value={activeTab} onChange={handleTabChange} >
+                {tabLabels.map((folder, index) => (
                     <Tab key={index} label={folder} />
                 ))}
             </Tabs>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} >
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <FilesTableHeader />
-                    <FileTableBody />
+                    <FileTableBody files={filteredFiles} />
                 </Table>
             </TableContainer>
         </>
