@@ -6,14 +6,12 @@ import TableHead from "@mui/material/TableHead";
 
 const FilesTableHeader: FC = () => {
     return (
-        <TableHead>
+        <TableHead >
             <TableRow>
-                <TableCell>File Type</TableCell>
-                <TableCell>Size (MB)</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Download</TableCell>
-
+                <TableCell >Name</TableCell >  
+                <TableCell>Last Modified</TableCell>
+                <TableCell>Size</TableCell>
+                <TableCell >Download</TableCell>
             </TableRow>
         </TableHead>
     )
