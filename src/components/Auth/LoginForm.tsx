@@ -43,9 +43,10 @@ const LoginForm = () => {
       try {
         const response = await login(email, password);
         console.log("Login response:", response);
-
         const username = email.split('@')[0];
         const accessToken = response.access_token
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('username', username);
         setUser({ Name: username, Token: accessToken });
         setSuccessMessage(`${username} ברוך הבא`);
         navigate('/');
