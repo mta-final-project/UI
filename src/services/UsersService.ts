@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'http://localhost:8003/'
+  baseURL: 'http://localhost:8003/' // TODO: Delete the hardcoded URL and use the env file URL
 })
 
 export const register = async (email: string, password: string, first_name:string, last_name:string) => {
