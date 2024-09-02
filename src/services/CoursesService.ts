@@ -1,12 +1,10 @@
-import axios from "axios";
 import { ICourse } from "../types/Course";
+import { usersApi } from "../api";
 
-const api = axios.create({
-  baseURL: 'http://localhost:8000' // TODO: Use environment variable for the URL
-});
+
 
 export const getCourses = async (): Promise<ICourse[]> => {
-  const response = await api.get<ICourse[]>("/courses", {
+  const response = await usersApi.get<ICourse[]>("/courses", {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json"
@@ -16,7 +14,7 @@ export const getCourses = async (): Promise<ICourse[]> => {
 };
 
 export const addCourse = async (courseData: Partial<ICourse>): Promise<ICourse> => {
-  const response = await api.post<ICourse>("/courses", courseData, {
+  const response = await usersApi.post<ICourse>("/courses", courseData, {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json"
@@ -26,7 +24,7 @@ export const addCourse = async (courseData: Partial<ICourse>): Promise<ICourse> 
 };
 
 export const deleteCourse = async (courseId: string): Promise<void> => {
-  await api.delete(`/courses/${courseId}`, {
+  await usersApi.delete(`/courses/${courseId}`, {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json"
@@ -35,7 +33,7 @@ export const deleteCourse = async (courseId: string): Promise<void> => {
 };
 
 export const getCourseById = async (courseId: string): Promise<ICourse> => {
-  const response = await api.get<ICourse>(`/courses/${courseId}`, {
+  const response = await usersApi.get<ICourse>(`/courses/${courseId}`, {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json"
@@ -45,7 +43,7 @@ export const getCourseById = async (courseId: string): Promise<ICourse> => {
 };
 
 export const updateCourse = async (courseId: string, courseData: Partial<ICourse>): Promise<ICourse> => {
-  const response = await api.put<ICourse>(`/courses/${courseId}`, courseData, {
+  const response = await usersApi.put<ICourse>(`/courses/${courseId}`, courseData, {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json"
