@@ -2,15 +2,15 @@ import { FC, SyntheticEvent } from "react";
 import { Autocomplete } from "@mui/material";
 import { TextField } from "@mui/material";
 import { IDriveFolder } from "../../types/files.ts"
-import { useSetSelectedCourse } from "../../hooks/context/SelectedCourse.tsx";
-import useCourses from "../../hooks/query/useCourses.ts";
+import { useSetSelectedCourseFolders } from "../../hooks/context/SelectedCourseFolder.tsx";
+import useSubFolders from "../../hooks/query/useFolders.ts";
 
 const CourseSearch: FC = () => {
-    const { data: courses } = useCourses();
-    const setSelectedCourse = useSetSelectedCourse();
+    const { data: courses } = useSubFolders();
+    const setSelectedCourseFolders = useSetSelectedCourseFolders();
 
     const handleCourseChange = (_event: SyntheticEvent, newValue: IDriveFolder | null) => {
-        setSelectedCourse(newValue);
+        setSelectedCourseFolders(newValue);
         
     }
 

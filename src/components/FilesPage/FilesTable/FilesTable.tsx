@@ -2,13 +2,13 @@ import { FC, useEffect, useState } from "react";
 import { Tabs, Tab, TableContainer, Paper, Table } from "@mui/material";
 import FilesTableHeader from "./FilesTableHeader";
 import FileTableBody from "./FileTableBody";
-import { useSelectedCourse } from "../../../hooks/context/SelectedCourse.tsx";
+import { useSelectedCourseFolders } from "../../../hooks/context/SelectedCourseFolder.tsx";
 import { IDriveFolder } from "../../../types/files.ts";
 import { filesApi } from "../../../api/index.ts";
 import { IFile } from "../../../types/files";
 
 const FilesTable: FC = () => {
-    const selectedCourseFromContext = useSelectedCourse();
+    const selectedCourseFromContext = useSelectedCourseFolders();
     const [selectedCourse, setSelectedCourse] = useState<string | null>(selectedCourseFromContext);
     const [activeTab, setActiveTab] = useState(0);
     const [subfolders, setSubFolder] = useState<IDriveFolder[]>([]);

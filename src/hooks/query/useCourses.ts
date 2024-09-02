@@ -1,21 +1,21 @@
 import { useQuery } from "react-query";
-import { IDriveFolder } from "../../types/files.ts";
-import { filesApi } from "../../api/index.ts";
-
-
-const useSubFolders = (path:string="") => {
-    const fetchSubfolders = async (): Promise<IDriveFolder[]> => {
-        console.log("/list-folders"+"/"+path);
-        return filesApi.get("/list-folders"+"/"+path)
-            .then(response => response.data as IDriveFolder[])
+import { ICourse } from "../../types/Course.ts";
+import { getCourses } from "../../services/CoursesService.ts";
+const useCourses = () => {
+    const fetchCourses = async (): Promise<ICourse[]> => {
+        return getCourses()
+            .then(response => response as ICourse[])
+            .catch(error => {
+                console.error("Error fetching courses:", error);
+                throw error;
+            });
     }
 
     return useQuery({
-        queryKey: ["GET_SUBFOLDERS"],
-        queryFn: fetchSubfolders,
+        queryKey: ["GET_COURSES"],
+        queryFn: fetchCourses,
         initialData: []
-    })
+    });
 }
 
-export default useSubFolders;
-
+export default useCourses;

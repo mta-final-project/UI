@@ -1,26 +1,25 @@
 import { FC, ReactNode, createContext, useContext, useState } from "react";
-import { IDriveFolder } from "../../types/files.ts";
+import { ICourse } from "../../types/Course"; // Adjust the import path as needed
 
 type Props = {
-    children: ReactNode[]
+    children: ReactNode
 }
 
-type SetCourseCB = (value: IDriveFolder | null) => void;
+type SetSelectedCourseCB = (value: ICourse | null) => void;
 
-const SetSelectedCourseContext = createContext<SetCourseCB>(() => {});
+const SetSelectedCourseContext = createContext<SetSelectedCourseCB>(() => {});
 export const useSetSelectedCourse = () => useContext(SetSelectedCourseContext);
 
-const SelectedCourseContext = createContext<IDriveFolder | null>(null);
+const SelectedCourseContext = createContext<ICourse | null>(null);
 export const useSelectedCourse = () => useContext(SelectedCourseContext);
 
-
 const SelectedCourseProvider: FC<Props> = ({ children }) => {
-    const [selectedCourse, setSelectedCourse] = useState<IDriveFolder | null>(null);
+    const [selectedCourse, setSelectedCourse] = useState<ICourse | null>(null);
 
     return (
-        <SetSelectedCourseContext.Provider value={ setSelectedCourse }>
-            <SelectedCourseContext.Provider value={ selectedCourse }>
-                { children }
+        <SetSelectedCourseContext.Provider value={setSelectedCourse}>
+            <SelectedCourseContext.Provider value={selectedCourse}>
+                {children}
             </SelectedCourseContext.Provider>
         </SetSelectedCourseContext.Provider>
     )
