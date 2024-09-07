@@ -1,6 +1,5 @@
 import axios from "axios";
-import { FILES_API_URL } from "./env";
-import { USERS_API_URL } from "./env";
+import { FILES_API_URL, USERS_API_URL } from "./env";
 
 export const filesApi = axios.create({
     baseURL: FILES_API_URL
