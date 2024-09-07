@@ -92,8 +92,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useQueryClient } from "react-query";
-import { getScheduleOptions } from "../../../services/CoursesService";
-import { useSelectedCourseContext } from "../../../hooks/context/SelectedCourseData";
+import { getScheduleOptions } from "../../services/CoursesService.ts";
+import { useSelectedCourseContext } from "../../hooks/context/SelectedCourseData.tsx";
 
 const CoursesThatAdded: FC = () => {
 	const { selectedCourses, removeCourse, setSelectedSchedule } = useSelectedCourseContext();

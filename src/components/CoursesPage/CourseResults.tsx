@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { useSelectedCourseContext } from "../../../hooks/context/SelectedCourseData";
+import { useSelectedCourseContext } from "../../hooks/context/SelectedCourseData.tsx";
 
 const CoursesResults: FC = () => {
   const { selectedCourses } = useSelectedCourseContext();

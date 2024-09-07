@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useQuery } from "react-query";
-import { useSelectedCourseContext } from "../../../hooks/context/SelectedCourseData";
-import { getScheduleOptions } from "../../../services/CoursesService";
-import { ISchedule } from "../../../types/schedule";
+import { useSelectedCourseContext } from "../../hooks/context/SelectedCourseData.tsx";
+import { getScheduleOptions } from "../../services/CoursesService.ts";
+import { ISchedule } from "../../types/schedule.ts";
 
 
 
