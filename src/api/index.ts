@@ -11,13 +11,11 @@ const authInterceptor = (config) => {
 }
 
 export const filesApi = axios.create({
-    //baseURL: FILES_API_URL
-    baseURL: 'http://localhost:8000/files'
+    baseURL: FILES_API_URL
 })
 
 export const usersApi = axios.create({
-    //baseURL: USERS_API_URL
-    baseURL: 'http://localhost:8000/users'
+    baseURL: USERS_API_URL
 })
 
 filesApi.interceptors.request.use(authInterceptor);
