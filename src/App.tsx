@@ -57,6 +57,7 @@ import FilesPage from "./components/FilesPage";
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
 import CoursesPage from "./components/CoursesPage";
+import HomePage from "./components/HomePage/index";
 import { AuthProvider } from "./hooks/context/AuthContext";
 import Header from "./components/Navbar";
 
@@ -89,10 +90,6 @@ const Layout = () => (
     <Header />
     <Outlet />
   </div>
-)
-
-const HomePage = () => (
-  <h2>Home page place holder</h2>
 )
 
 const NoMatch = () => (

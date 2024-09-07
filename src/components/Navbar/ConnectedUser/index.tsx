@@ -7,7 +7,7 @@ import { FC } from "react";
 const ConnectedUser: FC = () => {
    const { user, setUser } = useAuth();
    const navigate = useNavigate();
-   
+
    useEffect(() => {
        const accessToken = localStorage.getItem('accessToken');
        const username = localStorage.getItem('username');
@@ -22,19 +22,21 @@ const ConnectedUser: FC = () => {
        setUser(null);
    };
 
+   const buttonStyles = {
+       color: 'white',
+       transition: 'all 0.3s ease-in-out',
+       '&:hover': {
+           transform: 'scale(1.05)',
+           filter: 'brightness(1.2)',
+       },
+   };
+
    return (
-       <Box sx={{ padding: '10px' }}> 
+       <Box sx={{ padding: '10px' }}>
            {!user && (
                <>
                    <Button 
-                       sx={{
-                           color: 'white',
-                           transition: 'all 0.3s ease-in-out',  
-                           '&:hover': {
-                               transform: 'scale(1.05)',         
-                               filter: 'brightness(1.2)',        
-                           },
-                       }} 
+                       sx={buttonStyles} 
                        onClick={() => navigate('/login')}
                    >
                        התחברות
@@ -42,34 +44,23 @@ const ConnectedUser: FC = () => {
                </>
            )}
            {user && (
-               <Box sx={{ display: 'flex', gap: 1 }}>
-                   <Typography 
-                       sx={{ 
-                           color: 'white',
-                           transition: 'all 0.3s ease-in-out',  
-                           '&:hover': {
-                               fontWeight: 'bold',             
-                               transform: 'scale(1.05)',       
-                               filter: 'brightness(1.2)',      
-                           },
-                       }}
-                   >
-                        {user.Name} שלום
-                   </Typography>
+               <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', alignItems: 'center' }}>
                    <Button 
-                       sx={{
-                           backgroundColor: '#0A6BCB', 
-                           color: 'white',
-                           transition: 'all 0.3s ease-in-out',  
-                           '&:hover': {
-                               transform: 'scale(1.05)',        
-                               filter: 'brightness(1.2)',        
-                           },
-                       }} 
+                       sx={{ ...buttonStyles }} 
                        onClick={handleLogout}
                    >
                        התנתקות
                    </Button>
+                   <Typography 
+                       sx={{ 
+                           color: 'white',
+                           opacity: '70%',
+                           fontSize: '85%',
+                           transition: 'all 0.3s ease-in-out', 
+                       }}
+                   >
+                     {user.Name} שלום  
+                   </Typography>
                </Box>
            )}
        </Box>
