@@ -6,7 +6,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import { register } from "../../services/UsersService";
+import { register } from "../../Services/UsersService";
 
 const RegisterForm = () => {
   const [message, setMessage] = useState('');
