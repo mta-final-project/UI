@@ -1,4 +1,4 @@
-import { usersApi as api } from "./api";
+import { usersApi as api } from "../api";
 
 export const register = async (email: string, password: string, first_name:string, last_name:string) => {
     const registerDetails = { email, password, first_name, last_name };
