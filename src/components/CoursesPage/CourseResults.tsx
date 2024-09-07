@@ -1,16 +1,16 @@
-// src/components/CoursesPage/CourseSelection/CoursesResults.tsx
 import { FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { useSelectedCourseContext } from "../../hooks/context/SelectedCourseData.tsx";
+import {ICourse} from "../../types/schedule.ts";
 
-const CoursesResults: FC = () => {
-  const { selectedCourses } = useSelectedCourseContext();
+interface IProps {
+    selectedCourses: ICourse[]
+}
 
-
+const CoursesResults: FC<IProps> = ({ selectedCourses }) => {
   return (
     <Box
       sx={{

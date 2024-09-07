@@ -53,7 +53,7 @@ const CoursesPage: FC = () => {
 						}}
 					>
 						<CoursesSearchBar addCourse={addCourse} />
-						<CoursesResults />
+						<CoursesResults selectedCourses={selectedCourses}/>
 						<CoursesThatAdded />
 						<ScheduleOptions />
 					</Box>
