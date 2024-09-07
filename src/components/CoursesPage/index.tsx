@@ -5,17 +5,16 @@ import CoursesSearchBar from "./CoursesSearchBar.tsx";
 import CoursesResults from "./CourseResults.tsx";
 import CoursesThatAdded from "./CoursesThatAdded.tsx";
 import Schedule from "./Schedule/Schedule";
-import { SelectedCourseProvider } from "../../hooks/context/SelectedCourseData";
 import ScheduleOptions from "./ScheduleOptions.tsx";
-import { ISchedule } from "../../types/schedule.ts";
+import { ICourse, ISchedule } from "../../types/schedule.ts";
 
 
 const CoursesPage: FC = () => {
-	const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+	const [selectedCourses, setSelectedCourses] = useState<ICourse[]>([]);
 	const [scheduleOptions, setSchdeuleOptions] = useState<ISchedule[]>([]);
 	const [selectedOption, setSelectedOption] = useState<number>(-1);
 
-	const addCourse = (course: string) => {
+	const addCourse = (course: ICourse) => {
 		setSelectedCourses(prev => {
 			if (prev.includes(course))
 				return prev;
@@ -23,7 +22,7 @@ const CoursesPage: FC = () => {
 		})
 	}
 
-	const removeCourse = (course: string) => {
+	const removeCourse = (course: ICourse) => {
 		setSelectedCourses(prev => {
 			return prev.filter(item => item !== course)
 		})
@@ -53,7 +52,7 @@ const CoursesPage: FC = () => {
 							textAlign: "right",
 						}}
 					>
-						<CoursesSearchBar />
+						<CoursesSearchBar addCourse={addCourse} />
 						<CoursesResults />
 						<CoursesThatAdded />
 						<ScheduleOptions />
