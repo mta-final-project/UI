@@ -1,7 +1,7 @@
 // src/components/CoursesPage/CourseSelection/CoursesSearchBar.tsx
 import { FC, SyntheticEvent } from "react";
 import { Autocomplete, TextField } from "@mui/material";
-import { ICourse } from "../../../types/Course";
+import { ICourse } from "../../../types/schedule";
 import { useSelectedCourseContext } from "../../../hooks/context/SelectedCourseData";
 import useCourses from "../../../hooks/query/useCourses";
 

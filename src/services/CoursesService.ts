@@ -1,16 +1,16 @@
-import { ICourse } from "../types/Course";
-import { usersApi } from "../api";
-import { Group } from "../types/schedule";
+import { coursesApi, scheduleApi } from "../api";
+import { ICourse, ISchedule } from "../types/schedule";
+
 
 export const getCourses = async (): Promise<ICourse[]> => {
-  const response = await usersApi.get<ICourse[]>("/courses");
+  const response = await coursesApi.get<ICourse[]>("/");
   return response.data;
 };
 
 export const getScheduleOptions = async (
   courseIds: string[]
-): Promise<Group[]> => {
+): Promise<ISchedule[]> => {
   const courseIdsParam = courseIds.join('&courses_ids=');
-  const response = await usersApi.get(`/schedule/options/?courses_ids=${courseIdsParam}`);
+  const response = await scheduleApi.get(`/options/?courses_ids=${courseIdsParam}`);
   return response.data;
 };

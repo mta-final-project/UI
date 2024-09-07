@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { ICourse } from "../../types/Course.ts";
+import { ICourse } from "../../types/schedule.ts";
 import { getCourses } from "../../services/CoursesService.ts";
 const useCourses = () => {
   const fetchCourses = async (): Promise<ICourse[]> => {
