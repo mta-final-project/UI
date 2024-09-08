@@ -3,7 +3,7 @@ import { usersApi as api } from "../api";
 export const register = async (email: string, password: string, first_name:string, last_name:string) => {
     const registerDetails = { email, password, first_name, last_name };
     const response = await api.post("/register", registerDetails , { headers: {
-      "Accept": "*/*",
+      "Accept": "/",
       "Content-Type": "application/json"
     }});
     return response.data;

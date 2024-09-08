@@ -5,9 +5,7 @@ import LinkToPageSection from './LinkToPage/LinkToPageSection';
 import FavoriteCourses from './Courses/FavoriteCourses';
 
 const HomePage = () => {
-  const initialCourses = [
-    "סיבוכיות", "חישוביות", "מערכות הפעלה", "בסיסי נתונים", "אלגוריתמים", "למידה חישובית עם פייתון", "בדידה", "הסתברות"
-  ];
+  const initialCourses = [""];
 
   const [courses, setCourses] = useState<string[]>(initialCourses);
 
