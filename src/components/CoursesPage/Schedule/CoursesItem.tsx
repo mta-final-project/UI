@@ -156,7 +156,7 @@ interface CoursesItemsProps {
     group: Group;
 }
 
-const CoursesItems: FC<CoursesItemsProps> = ({ lesson, group }) => {
+const CoursesItem: FC<CoursesItemsProps> = ({ lesson, group }) => {
     const { day, start_time, end_time, classroom } = lesson;
     const positionTop = (parseInt(start_time.split(":")[0]) - 8) * 6.66; // assuming 8 AM is the start time and each hour is ~6.66% of the container's height
     const height = (parseInt(end_time.split(":")[0]) - parseInt(start_time.split(":")[0])) * 6.66;
@@ -190,4 +190,4 @@ const CoursesItems: FC<CoursesItemsProps> = ({ lesson, group }) => {
     );
 };
 
-export default CoursesItems;
+export default CoursesItem;

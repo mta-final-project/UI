@@ -1,5 +1,4 @@
 import {FC, useState} from "react";
-// import { useQueryClient } from "react-query";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import CoursesSearchBar from "./CoursesSearchBar.tsx";
@@ -8,7 +7,6 @@ import Schedule from "./Schedule/Schedule";
 import ScheduleOptions from "./ScheduleOptions.tsx";
 import {ICourse, ISchedule} from "../../types/schedule.ts";
 import {getScheduleOptions} from "../../services/CoursesService.ts";
-import {options} from "axios";
 
 
 const CoursesPage: FC = () => {
@@ -64,7 +62,7 @@ const CoursesPage: FC = () => {
         overflowY: "auto",
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} height={550}>
         <Grid item xs={12} md={3}>
           <Box
             sx={{

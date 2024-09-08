@@ -2,7 +2,7 @@ import {FC} from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import CoursesItems from "./CoursesItems";
+import CoursesItem from "./CoursesItem.tsx";
 import {ISchedule} from "../../../types/schedule.ts";
 
 
@@ -58,12 +58,12 @@ const ScheduleView: FC<IProps> = ({scheduleOptions, selectedOption}) => {
                 height: "1px",
                 backgroundColor: "#30363D",
               }}
-            />
+            >{hour}</Box>
           ))}
           {selectedSchedule && (
             selectedSchedule.groups.map((group) =>
               group.lessons.map((lesson) => (
-                <CoursesItems
+                <CoursesItem
                   key={`${lesson.day}-${lesson.start_time}-${lesson.end_time}`}
                   lesson={lesson}
                   group={group}
