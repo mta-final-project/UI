@@ -156,6 +156,9 @@ interface CoursesItemsProps {
     group: Group;
 }
 
+// TODO if possible, extend the item to full height on hover.
+//  (when the item takes only the space within it's timeslot we can't read important info)
+
 const CoursesItem: FC<CoursesItemsProps> = ({ lesson, group }) => {
     const { day, start_time, end_time, classroom } = lesson;
     const positionTop = (parseInt(start_time.split(":")[0]) - 8) * 6.66; // assuming 8 AM is the start time and each hour is ~6.66% of the container's height
