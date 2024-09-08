@@ -58,7 +58,7 @@ const ScheduleView: FC<IProps> = ({scheduleOptions, selectedOption}) => {
                 height: "1px",
                 backgroundColor: "#30363D",
               }}
-            >{hour}</Box>
+            >{hour}</Box>  // TODO I added the hour text here, when there's a lesson on Sunday it blocks that time in that timeslot
           ))}
           {selectedSchedule && (
             selectedSchedule.groups.map((group) =>

@@ -167,6 +167,7 @@ const CoursesItem: FC<CoursesItemsProps> = ({ lesson, group }) => {
                 position: "absolute",
                 top: `${positionTop}%`,
                 left: `${day * 16.66}%`, // assuming 6 days with 16.66% each
+              // TODO I think the code above is breaking when there's a lesson on Friday (the position overflows and end up right to Sunday)
                 width: "16.66%",
                 height: `${height}%`,
                 backgroundColor: "#E1E8F1",
