@@ -1,66 +1,61 @@
-import { FC } from "react";
+import {FC, useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useQuery } from "react-query";
-import { useSelectedCourseContext } from "../../hooks/context/SelectedCourseData.tsx";
-import { getScheduleOptions } from "../../services/CoursesService.ts";
-import { ISchedule } from "../../types/schedule.ts";
+import {ISchedule} from "../../types/schedule.ts";
+import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
 
 
+interface IProps {
+  scheduleOptions: ISchedule[];
+  handleCreateScheduleOptions: () => void;
+  selectedOption: number,
+  setSelectedOption: (index: number) => void;
+}
 
 
-const ScheduleOptions: FC = () => {
-  const { selectedCourses, setSelectedSchedule } = useSelectedCourseContext();
-  const { data: scheduleOptions = [], refetch } = useQuery(
-    ['scheduleOptions', selectedCourses],
-    () => getScheduleOptions(selectedCourses.map(course => course.id.toString())),
-    { enabled: selectedCourses.length > 0 }
-  );
+const ScheduleOptions: FC<IProps> = (props) => {
+  const {scheduleOptions, handleCreateScheduleOptions, selectedOption, setSelectedOption} = props;
+  const [loading, setLoading] = useState<boolean>(false);
 
-  console.log("Schedule Options from API:", scheduleOptions);
+  const _handleCreateScheduleOptions = async () => {
+    setLoading(true);
+    handleCreateScheduleOptions();
+    setLoading(false);
+  }
 
-  const handleSelectOption = (option: ISchedule) => {
-    console.log("Selecting Option:", option);
-    setSelectedSchedule(option);
-  };
+  const handleOptionChange = (event: SelectChangeEvent) => {
+    const option = Number(event.target.value)
+    setSelectedOption(option);
+  }
 
   return (
-    <Box sx={{ border: '1px solid #58A6FF', borderRadius: '8px', padding: '10px', marginTop: '20px' }}>
-      <Typography variant="h6" sx={{ color: '#C9D1D9', marginBottom: '10px', fontSize: '16px', fontWeight: 'bold' }}>
+    <Box sx={{border: '1px solid #58A6FF', borderRadius: '8px', padding: '10px', marginTop: '20px'}}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={_handleCreateScheduleOptions}
+        disabled={loading}
+        sx={{marginTop: "10px"}}
+      >
+        {loading ? "Creating..." : "Create Optional Schedules"}
+      </Button>
+      <Typography variant="h6" sx={{color: '#C9D1D9', marginBottom: '10px', fontSize: '16px', fontWeight: 'bold'}}>
         אפשרויות לוח זמנים
       </Typography>
       {scheduleOptions.length > 0 ? (
-        scheduleOptions.map((option: ISchedule, index: number) => (
-          <Box key={index} sx={{ marginBottom: '10px' }}>
-            <Typography variant="subtitle1" sx={{ color: '#C9D1D9', fontWeight: 'bold' }}>
-              Option {index + 1}
-            </Typography>
-            {option.groups.map((group, groupIndex) => (
-              <Box key={groupIndex}>
-                <Typography variant="body2" sx={{ color: '#C9D1D9' }}>
-                  {group.course.subject} - {group.description}
-                </Typography>
-                {group.lessons.map((lesson, lessonIndex) => (
-                  <Typography key={lessonIndex} variant="body2" sx={{ color: '#C9D1D9' }}>
-                    Day: {lesson.day}, {lesson.start_time} - {lesson.end_time}, Room: {lesson.classroom}
-                  </Typography>
-                ))}
-              </Box>
-            ))}
-            <Button variant="outlined" color="primary" onClick={() => handleSelectOption(option)}>
-              Select Option {index + 1}
-            </Button>
-          </Box>
-        ))
+        <Select value={selectedOption.toString()} onChange={handleOptionChange}>
+          {
+            scheduleOptions.map((_, idx) => (
+              <MenuItem value={idx}>{idx}</MenuItem>
+            ))
+          }
+        </Select>
       ) : (
-        <Typography sx={{ color: '#C9D1D9', textAlign: 'center' }}>
-          No schedule options available
+        <Typography sx={{color: '#C9D1D9', textAlign: 'center'}}>
+          לא נמצאו אפשרויות
         </Typography>
       )}
-      <Button variant="contained" color="primary" onClick={() => refetch()}>
-        Refresh Schedule Options
-      </Button>
     </Box>
   );
 };

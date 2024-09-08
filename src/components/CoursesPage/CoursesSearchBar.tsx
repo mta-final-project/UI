@@ -23,6 +23,7 @@ const CoursesSearchBar: FC<IProps> = ({ addCourse }) => {
         <Autocomplete
             options={courses}
             getOptionLabel={(option: ICourse) => option.subject}
+            getOptionKey={(option: ICourse) => option.id}
             onChange={handleCourseChange}
             renderInput={(params) => (
                 <TextField
