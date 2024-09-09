@@ -33,6 +33,21 @@ const RegisterForm = () => {
 
     if (password !== retypePassword) {
       setError('הסיסמאות אינן תואמות');
+      setMessage('');
+      return;
+    }
+    if (password.length < 8) {
+      setError('על הסיסמה להכיל לפחות 8 תווים');
+      setMessage('');
+      return;
+    }
+    if (
+      password.search(/\d/) == -1 ||
+      password.search(/[a-z]/) == -1 ||
+      password.search(/[A-Z]/) == -1
+    ) {
+      setError('על הסיסמה להכיל אות קטנה וגדול באנגלית ומספר');
+      setMessage('');
       return;
     }
 
