@@ -1,9 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Grid, Paper, Typography, Divider } from '@mui/material';
 import CourseElement from './CourseElement';
+import { getFavorites, removeCourseFromFavorites } from "../../../services/FilesService";
 
-const FavoriteCourses = ({ courses, removeCourse }) => {
+const FavoriteCourses = ({ removeCourse }) => {
   const [hovered, setHovered] = useState<string | null>(null);
+  const [favoriteCourses, setFavoriteCourses] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const favorites = await getFavorites();
+        setFavoriteCourses(favorites);
+        setLoading(false);
+      } catch (err) {
+        console.error("Failed to fetch favorite courses", err);
+        setError("Failed to load favorite courses");
+        setLoading(false);
+      }
+    };
+
+    fetchFavorites();
+  }, []);
+
+  const handleRemoveCourse = async (course: string) => {
+    try {
+      await removeCourseFromFavorites(course);
+      setFavoriteCourses(favoriteCourses.filter(favCourse => favCourse !== course));
+    } catch (err) {
+      console.error(`Failed to remove course ${course} from favorites`, err);
+    }
+  };
 
   return (
     <Grid item xs={12} md={4}>
@@ -12,13 +41,21 @@ const FavoriteCourses = ({ courses, removeCourse }) => {
           הקורסים המועדפים
         </Typography>
         <Divider sx={{ backgroundColor: '#C9D1D9', marginY: '10px' }} />
-        {courses.map(course => (
+        
+        {loading && <Typography sx={{ color: '#FFFFFF' }}>בטעינה...</Typography>}
+        {error && <Typography sx={{ color: '#FF5722' }}>{error}</Typography>}
+        
+        {!loading && !error && favoriteCourses.length === 0 && (
+          <Typography sx={{ color: '#FFFFFF' }}>אין קורסים מועדפים</Typography>
+        )}
+
+        {!loading && !error && favoriteCourses.length > 0 && favoriteCourses.map(course => (
           <CourseElement
             key={course}
             course={course}
             hovered={hovered}
             onHover={setHovered}
-            removeCourse={() => removeCourse(course)}
+            removeCourse={() => handleRemoveCourse(course)}
           />
         ))}
       </Paper>

@@ -14,11 +14,11 @@ const Navbar: FC = () => {
                 backgroundColor: '#0C222D', 
                 display: 'flex', 
                 justifyContent: 'space-between', 
-                borderBottom: '3px solid white' 
+                borderBottom: '3px solid white',
             }}
         >
             <ConnectedUser/>
-            <Box sx={{ width: '70%', color: 'white' }}>
+            <Box sx={{ width: '60%', color: 'white' }}>
                 <AppLinks/>
             </Box>
             <AppLogo/>

@@ -23,13 +23,15 @@ const FilesTableRow: FC<Props> = ({ file }) => {
     return (
         <TableRow
             key={file.key}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-            <TableCell component="th" scope="row">{file.name} </TableCell>
-            <TableCell>{buildDateString(file.last_modified)}</TableCell>
-            <TableCell>{formatFileSize(file.size)}</TableCell>
-            <TableCell><DownloadButton fileName={file.key}/> </TableCell>
+            sx={{ '&:last-child td, &:last-child th': { border: 0 }, direction: 'rtl' }}> 
+            <TableCell align="right" sx={{ color: '#C9D1D9' }}>{file.name}</TableCell>
+            <TableCell align="right" sx={{ color: '#C9D1D9' }}>{buildDateString(file.last_modified)}</TableCell>
+            <TableCell align="right" sx={{ color: '#C9D1D9', direction: 'ltr' }}>{formatFileSize(file.size)}</TableCell>
+            <TableCell align="right">
+                <DownloadButton fileName={file.key}/> 
+            </TableCell>
         </TableRow>
-    )
+    );
 }
 
 export default FilesTableRow;

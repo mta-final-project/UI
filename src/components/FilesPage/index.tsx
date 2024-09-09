@@ -4,8 +4,6 @@ import SelectedCourseProvider from "../../hooks/context/SelectedCourseFolder.tsx
 import CourseSearch from "./CourseSearch.tsx";
 import FilesTable from "./FilesTable/FilesTable.tsx";
 
-
-
 const Files: FC = () => {
     return (
         <Box>
