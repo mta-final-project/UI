@@ -1,14 +1,14 @@
 import { FC, SyntheticEvent, useState, useEffect } from "react";
 import { Autocomplete, TextField, Button, Box } from "@mui/material";
 import { IDriveFolder } from "../../types/files";
-import { useSetSelectedCourse } from "../../hooks/context/SelectedCourse";
-import useCourses from "../../hooks/query/useCourses";
-import { addCourseToFavorites, getFavorites, removeCourseFromFavorites } from "../../services/FilesService"; 
+import { addCourseToFavorites, getFavorites, removeCourseFromFavorites } from "../../services/FilesService";
 import { useLocation } from 'react-router-dom';
+import { useSetSelectedCourseFolders } from "../../hooks/context/SelectedCourseFolder.tsx";
+import useFolders from "../../hooks/query/useFolders.ts";
 
 const CourseSearch: FC = () => {
-    const { data: courses = [] } = useCourses();
-    const setSelectedCourse = useSetSelectedCourse();
+    const { data: courses = [] } = useFolders();
+    const setSelectedCourseFolders = useSetSelectedCourseFolders();
     const [selectedCourse, setSelectedCourseState] = useState<IDriveFolder | null>(null);
     const [isFavorite, setIsFavorite] = useState(false);
     const [favorites, setFavorites] = useState<string[]>([]);
@@ -35,7 +35,7 @@ const CourseSearch: FC = () => {
             const foundCourse = courses.find((course) => course.toString() === selectedCourseFromURL);
             if (foundCourse) {
                 setSelectedCourseState(foundCourse);
-                setSelectedCourse(foundCourse);
+                setSelectedCourseFolders(foundCourse);
             }
         }
     }, [courses, selectedCourseFromURL]);
@@ -51,7 +51,7 @@ const CourseSearch: FC = () => {
 
     const handleCourseChange = (_event: SyntheticEvent, newValue: IDriveFolder | null) => {
         setSelectedCourseState(newValue);
-        setSelectedCourse(newValue);
+        setSelectedCourseFolders(newValue);
     };
 
     const toggleFavorite = async () => {
@@ -112,7 +112,7 @@ const CourseSearch: FC = () => {
                     <Button
                         variant="contained"
                         sx={{
-                            backgroundColor: isFavorite ? '#B0BEC5' : '#0A6BCB', 
+                            backgroundColor: isFavorite ? '#B0BEC5' : '#0A6BCB',
                             color: 'white',
                             '&:hover': { backgroundColor: isFavorite ? '#90A4AE' : '#084C99' }
                         }}

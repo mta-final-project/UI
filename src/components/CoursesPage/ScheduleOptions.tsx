@@ -1,0 +1,63 @@
+import {FC, useState} from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import {ISchedule} from "../../types/schedule.ts";
+import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
+
+
+interface IProps {
+  scheduleOptions: ISchedule[];
+  handleCreateScheduleOptions: () => void;
+  selectedOption: number,
+  setSelectedOption: (index: number) => void;
+}
+
+
+const ScheduleOptions: FC<IProps> = (props) => {
+  const {scheduleOptions, handleCreateScheduleOptions, selectedOption, setSelectedOption} = props;
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const _handleCreateScheduleOptions = async () => {
+    setLoading(true);
+    handleCreateScheduleOptions();
+    setLoading(false);
+  }
+
+  const handleOptionChange = (event: SelectChangeEvent) => {
+    const option = Number(event.target.value)
+    setSelectedOption(option);
+  }
+
+  return (
+    <Box sx={{border: '1px solid #58A6FF', borderRadius: '8px', padding: '10px', marginTop: '20px'}}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={_handleCreateScheduleOptions}
+        disabled={loading}
+        sx={{marginTop: "10px"}}
+      >
+        {loading ? "Creating..." : "Create Optional Schedules"}
+      </Button>
+      <Typography variant="h6" sx={{color: '#C9D1D9', marginBottom: '10px', fontSize: '16px', fontWeight: 'bold'}}>
+        אפשרויות לוח זמנים
+      </Typography>
+      {scheduleOptions.length > 0 ? (
+        <Select value={selectedOption.toString()} onChange={handleOptionChange}>
+          {
+            scheduleOptions.map((_, idx) => (
+              <MenuItem value={idx}>{idx}</MenuItem>
+            ))
+          }
+        </Select>
+      ) : (
+        <Typography sx={{color: '#C9D1D9', textAlign: 'center'}}>
+          לא נמצאו אפשרויות
+        </Typography>
+      )}
+    </Box>
+  );
+};
+
+export default ScheduleOptions;
