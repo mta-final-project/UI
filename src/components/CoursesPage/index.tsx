@@ -14,6 +14,11 @@ const CoursesPage: FC = () => {
   const [scheduleOptions, setScheduleOptions] = useState<ISchedule[]>([]);
   const [selectedOption, setSelectedOption] = useState<number>(-1);
 
+  const clearOptions = () => {
+    setScheduleOptions([]);
+    setSelectedOption(-1);
+  };
+
   const unsetSelectedOption = () => {
     setSelectedOption(-1);
   }
@@ -86,12 +91,15 @@ const CoursesPage: FC = () => {
               handleCreateScheduleOptions={handleCreateScheduleOptions}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
+              selectedCoursesCount={selectedCourses.length}
+  clearOptions={clearOptions}
             />
           </Box>
         </Grid>
         <Schedule
           scheduleOptions={scheduleOptions}
           selectedOption={selectedOption}
+
         />
       </Grid>
     </Box>

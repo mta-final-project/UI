@@ -1,84 +1,3 @@
-// import { FC } from "react";
-// import Typography from "@mui/material/Typography";
-// import Paper from "@mui/material/Paper";
-
-
-// type Lesson = {
-//     day: number;
-//     start_time: string;
-//     end_time: string;
-//     classroom: string;
-// };
-
-// type Group = {
-//     group_id: number;
-//     description: string;
-//     lecturer: string;
-//     type: {
-//         number: number;
-//         description: string;
-//     };
-// };
-
-// interface CoursesItemsProps {
-//     lesson: Lesson;
-//     group: Group;
-// }
-
-
-// const CoursesItem: FC<CoursesItemsProps> = ({ lesson, group }) => {
-
-//     const { day, start_time, end_time, classroom } = lesson;
-//     const startHour = parseInt(start_time.split(":")[0]);
-//     const endHour = parseInt(end_time.split(":")[0]);
-//     const startMinute = parseInt(start_time.split(":")[1]);
-//     const endMinute = parseInt(end_time.split(":")[1]);
-
-//     const positionTop = ((startHour - 8) * 60 + startMinute) / (14 * 60) * 100;
-//     const height = ((endHour - startHour) * 60 + (endMinute - startMinute)) / (14 * 60) * 100;
-//     const adjustedDay = day === 6 ? 5 : day - 1;
-
-//     return (
-//         <Paper
-//             sx={{
-
-//                 position: "absolute",
-//                 top: `${positionTop}%`,
-//                 right: `${adjustedDay * (100 / 6)}%`,
-//                 width: `${100 / 6}%`,
-//                 height: `${height}%`,
-//                 backgroundColor: "#E1E8F1",
-//                 padding: "5px",
-//                 borderRadius: "4px",
-//                 overflow: "hidden",
-//                 '&:hover': {
-//                     zIndex: 1,
-//                     height: 'auto',
-//                     maxHeight: '200px',
-//                     overflowY: 'auto'
-//                 }
-//             }}
-//         >
-
-//             <Typography variant="subtitle2" sx={{ color: "#1C273A", fontWeight: "bold", fontSize: "0.7rem" }}>
-//                 {group.description}
-//             </Typography>
-//             <Typography variant="body2" sx={{ color: "#1C273A", fontSize: "0.6rem" }}>
-//                 {start_time} - {end_time}
-//             </Typography>
-//             <Typography variant="body2" sx={{ color: "#1C273A", fontSize: "0.6rem" }}>
-//                 {classroom}
-//             </Typography>
-//             <Typography variant="caption" sx={{ color: "#1C273A", fontSize: "0.6rem" }}>
-//                 {group.lecturer}
-//             </Typography>
-//         </Paper>
-//     );
-// };
-
-// export default CoursesItem;
-
-
 import { FC } from "react";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
@@ -111,10 +30,12 @@ const CoursesItem: FC<CoursesItemProps> = ({ lesson, group, course }) => {
                 right: `${adjustedDay * (100 / 6)}%`,
                 width: `${100 / 6}%`,
                 height: `${height}%`,
-                backgroundColor: "#E1E8F1",
                 padding: "5px",
                 borderRadius: "4px",
                 overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
                 '&:hover': {
                     zIndex: 1,
                     height: 'auto',
@@ -143,3 +64,66 @@ const CoursesItem: FC<CoursesItemProps> = ({ lesson, group, course }) => {
 };
 
 export default CoursesItem;
+
+// import { FC } from "react";
+// import Typography from "@mui/material/Typography";
+// import Paper from "@mui/material/Paper";
+// import { ILesson, IGroupInfo, ICourseInfo } from "../../../types/schedule.ts";
+
+// interface CoursesItemProps {
+//     lesson: ILesson;
+//     group: IGroupInfo;
+//     course: ICourseInfo;
+//     color: string;
+// }
+
+// const CoursesItem: FC<CoursesItemProps> = ({ lesson, group, course, color }) => {
+//     const { day, start_time, end_time, classroom } = lesson;
+//     const startHour = parseInt(start_time.split(":")[0]);
+//     const endHour = parseInt(end_time.split(":")[0]);
+//     const startMinute = parseInt(start_time.split(":")[1]);
+//     const endMinute = parseInt(end_time.split(":")[1]);
+
+//     const positionTop = ((startHour - 8) * 60 + startMinute) / (14 * 60) * 100;
+//     const height = ((endHour - startHour) * 60 + (endMinute - startMinute)) / (14 * 60) * 100;
+
+//     // Adjust day calculation for Hebrew calendar (Sunday = 0)
+//     const adjustedDay = day === 6 ? 5 : day - 1;
+
+//     return (
+//         <Paper
+//             sx={{
+//                 position: "absolute",
+//                 top: `${positionTop}%`,
+//                 right: `${adjustedDay * (100 / 6) + 4.17}%`, // Adjusted to account for hour column
+//                 width: `${(100 / 6) - 4.17}%`,
+//                 height: `${height}%`,
+//                 backgroundColor: color,
+//                 padding: "2px",
+//                 borderRadius: "4px",
+//                 overflow: "hidden",
+//                 display: "flex",
+//                 flexDirection: "column",
+//                 justifyContent: "space-between"
+//             }}
+//         >
+//             <Typography variant="subtitle2" sx={{ color: "#1C273A", fontWeight: "bold", fontSize: "0.6rem", lineHeight: 1 }}>
+//                 {course.subject}
+//             </Typography>
+//             <Typography variant="body2" sx={{ color: "#1C273A", fontSize: "0.5rem", lineHeight: 1 }}>
+//                 {group.description}
+//             </Typography>
+//             <Typography variant="body2" sx={{ color: "#1C273A", fontSize: "0.5rem", lineHeight: 1 }}>
+//                 {start_time} - {end_time}
+//             </Typography>
+//             <Typography variant="body2" sx={{ color: "#1C273A", fontSize: "0.5rem", lineHeight: 1 }}>
+//                 {classroom}
+//             </Typography>
+//             <Typography variant="caption" sx={{ color: "#1C273A", fontSize: "0.5rem", lineHeight: 1 }}>
+//                 {group.lecturer}
+//             </Typography>
+//         </Paper>
+//     );
+// };
+
+// export default CoursesItem;
