@@ -38,10 +38,10 @@ const ScheduleOptions: FC<IProps> = (props) => {
         disabled={loading}
         sx={{marginTop: "10px"}}
       >
-        {loading ? "Creating..." : "Create Optional Schedules"}
+        {loading ? "Creating..." : "Create Schedule Options"}
       </Button>
       <Typography variant="h6" sx={{color: '#C9D1D9', marginBottom: '10px', fontSize: '16px', fontWeight: 'bold'}}>
-        אפשרויות לוח זמנים
+        Select a schedule option:
       </Typography>
       {scheduleOptions.length > 0 ? (
         <Select value={selectedOption.toString()} onChange={handleOptionChange}>
@@ -53,7 +53,7 @@ const ScheduleOptions: FC<IProps> = (props) => {
         </Select>
       ) : (
         <Typography sx={{color: '#C9D1D9', textAlign: 'center'}}>
-          לא נמצאו אפשרויות
+          sorry..no options found
         </Typography>
       )}
     </Box>
