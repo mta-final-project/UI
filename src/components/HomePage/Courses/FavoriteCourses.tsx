@@ -3,7 +3,7 @@ import { Grid, Paper, Typography, Divider } from '@mui/material';
 import CourseElement from './CourseElement';
 import { getFavorites, removeCourseFromFavorites } from "../../../services/FilesService";
 
-const FavoriteCourses = ({ removeCourse }) => {
+const FavoriteCourses = () => {
   const [hovered, setHovered] = useState<string | null>(null);
   const [favoriteCourses, setFavoriteCourses] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,10 +41,10 @@ const FavoriteCourses = ({ removeCourse }) => {
           הקורסים המועדפים
         </Typography>
         <Divider sx={{ backgroundColor: '#C9D1D9', marginY: '10px' }} />
-        
+
         {loading && <Typography sx={{ color: '#FFFFFF' }}>בטעינה...</Typography>}
         {error && <Typography sx={{ color: '#FF5722' }}>{error}</Typography>}
-        
+
         {!loading && !error && favoriteCourses.length === 0 && (
           <Typography sx={{ color: '#FFFFFF' }}>אין קורסים מועדפים</Typography>
         )}
