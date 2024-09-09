@@ -47,10 +47,10 @@ const ScheduleOptions: FC<IProps> = (props) => {
         disabled={loading || selectedCoursesCount === 0}
         sx={{ marginTop: "10px" }}
       >
-        {loading ? "Creating..." : "Create Schedule Options"}
+        {loading ? "Creating..." : "צור אפשרויות למערכת"}
       </Button>
       <Typography variant="h6" sx={{ color: '#C9D1D9', marginBottom: '10px', fontSize: '16px', fontWeight: 'bold' }}>
-        Select a schedule option:
+        בחר מערכת שעות:
       </Typography>
       {scheduleOptions.length > 0 ? (
         <Select 
@@ -70,7 +70,7 @@ const ScheduleOptions: FC<IProps> = (props) => {
       </Select>
       ) : (
         <Typography sx={{ color: '#C9D1D9', textAlign: 'center' }}>
-          sorry..no options found
+          מצטערים... לא נמצאו אפשרויות לקורסים שנבחרו
         </Typography>
       )}
     </Box>
