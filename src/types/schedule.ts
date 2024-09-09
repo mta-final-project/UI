@@ -32,9 +32,8 @@ export interface ILesson {
   classroom: string;
 }
 
-
 export interface IGroupWithCourse extends IGroup {
-  course: ICourseInfo
+  course: ICourseInfo;
 }
 
 export interface ISchedule {
