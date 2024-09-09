@@ -8,6 +8,16 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { register } from "../../services/UsersService.ts";
 
+
+const getError = (error) => {
+  try {
+    return error.response.data["detail"]["Message"]
+  }
+  catch (e) {
+    return ""
+  }
+}
+
 const RegisterForm = () => {
   const [message, setMessage] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -34,7 +44,7 @@ const RegisterForm = () => {
         setMessage('ההרשמה בוצעה בהצלחה');
       })
       .catch(error => {
-        console.error("Registration error:", error);
+        console.error("Registration error:", getError(error));
         setError('הרשמה נכשלה, נא לנסות שוב');
       });
   };
