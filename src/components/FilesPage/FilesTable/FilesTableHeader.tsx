@@ -6,7 +6,7 @@ import TableHead from "@mui/material/TableHead";
 const FilesTableHeader: FC = () => {
     return (
         <TableHead sx={{ direction: 'rtl' }}> 
-            <TableRow sx={{ '& th': { fontWeight: 'bold' , fontSize:'100%'} }}>
+            <TableRow sx={{ '& th': { fontWeight: 'bold', fontSize: '100%', color: '#C9D1D9' } }}>
                 <TableCell align="right">שם הקובץ</TableCell> 
                 <TableCell align="right">תאריך שינוי אחרון</TableCell>
                 <TableCell align="right">גודל</TableCell>

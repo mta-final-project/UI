@@ -6,7 +6,7 @@ import { useSelectedCourse } from "../../../hooks/context/SelectedCourse.tsx";
 import { IDriveFolder } from "../../../types/files.ts";
 import { filesApi } from "../../../api/index.ts";
 import { IFile } from "../../../types/files";
-import { useNavigate } from 'react-router-dom'; // Import useNavigate to change URL
+import { useNavigate } from 'react-router-dom';
 
 const FilesTable: FC = () => {
     const selectedCourseFromContext = useSelectedCourse();
@@ -15,7 +15,7 @@ const FilesTable: FC = () => {
     const [subfolders, setSubFolder] = useState<IDriveFolder[]>([]);
     const [files, setFiles] = useState<IFile[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate();
 
     const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
@@ -31,7 +31,7 @@ const FilesTable: FC = () => {
         if (selectedCourse) {
             navigate(`?course=${selectedCourse}`, { replace: true });
         }
-    }, [selectedCourse, navigate]); 
+    }, [selectedCourse, navigate]);
 
     useEffect(() => {
         if (selectedCourse) {
@@ -86,17 +86,35 @@ const FilesTable: FC = () => {
 
     return (
         <>
-            <Tabs sx={{direction:'rtl'}} value={activeTab} onChange={handleTabChange} >
-                {tabLabels.map((folder, index) => (
-                    <Tab key={index} label={folder} />
-                ))}
-            </Tabs>
-            <TableContainer component={Paper} sx={{ direction: 'rtl' }}> 
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <FilesTableHeader />
-                    <FileTableBody files={filteredFiles} />
-                </Table>
-            </TableContainer>
+            <Box
+                sx={{
+                    backgroundColor: "#0A1929",
+                    minHeight: "100vh",
+                    color: "#C9D1D9",
+                    padding: "20px",
+                    direction: "rtl",
+                    overflowY: "auto",
+                    border: "1px solid #30363D",
+                }}
+            >
+                <Tabs sx={{ direction: 'rtl',
+                        '& .MuiTab-root': { color: '#C9D1D9',},
+                        '& .Mui-selected': {color: '#58A6FF',},
+                        '& .MuiTabs-indicator': {backgroundColor: '#58A6FF',}, 
+                    }}    
+                    value={activeTab}
+                    onChange={handleTabChange}>
+                    {tabLabels.map((folder, index) => (
+                        <Tab key={index} label={folder} />
+                    ))}
+                </Tabs>
+                <TableContainer component={Paper} sx={{ direction: 'rtl', backgroundColor: '#1C273A' }}> 
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <FilesTableHeader />
+                        <FileTableBody files={filteredFiles} />
+                    </Table>
+                </TableContainer>
+            </Box>
         </>
     );
 };

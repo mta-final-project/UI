@@ -11,7 +11,7 @@ const FileTableBody: FC<Props> = ({ files }) => {
     if (!files.length) return <></>;
 
     return (
-        <TableBody sx={{ direction: 'rtl' }}> 
+        <TableBody sx={{ direction: 'rtl'}}> 
             {files.map((row) => (
                 <FilesTableRow key={row.name} file={row} />
             ))}

@@ -3,7 +3,7 @@ import { Autocomplete, TextField, Button, Box } from "@mui/material";
 import { IDriveFolder } from "../../types/files";
 import { useSetSelectedCourse } from "../../hooks/context/SelectedCourse";
 import useCourses from "../../hooks/query/useCourses";
-import { addCourseToFavorites, getFavorites, removeCourseFromFavorites } from "../../services/FilesService"; // Add remove function
+import { addCourseToFavorites, getFavorites, removeCourseFromFavorites } from "../../services/FilesService"; 
 import { useLocation } from 'react-router-dom';
 
 const CourseSearch: FC = () => {
